@@ -1,29 +1,26 @@
-class Game {
-  category: string
+class Restaurant {
   description: string
   image: string
   infos: string[]
-  system: string
   title: string
+  assessment: number
   id: number
 
   constructor(
     id: number,
     description: string,
     title: string,
-    system: string,
     infos: string[],
     image: string,
-    category: string
+    assessment: number
   ) {
     this.id = id
     this.title = title
-    this.system = system
     this.infos = infos
     this.image = image
     this.description = description
-    this.category = category
+    this.assessment = assessment
   }
 }
 
-export default Game
+export default Restaurant

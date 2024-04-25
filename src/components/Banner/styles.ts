@@ -1,38 +1,33 @@
 import styled from 'styled-components'
-import { TagContainer } from '../Tag/styles'
+import { cores } from '../../styles'
 
 export const Imagem = styled.div`
   position: relative;
   width: 100%;
-  height: 560px;
-  display: block;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-weight: bold;
-  padding-top: 340px;
-
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  ${TagContainer} {
-    position: absolute;
-    top: 32px;
+  height: 280px;
+  img {
+    width: 100%;
+    height: 280px;
+    background-repeat: no-repeat;
+    filter: brightness(0.6);
+    background-size: cover;
   }
 `
 
 export const Titulo = styled.h2`
-  font-size: 36px;
-  max-width: 450px;
+  top: 24px;
+  font-size: 32px;
+  font-weight: 100;
+  line-height: 37.5px;
+  color: ${cores.white_100};
+  position: absolute;
 `
 
-export const Precos = styled.p`
-  font-size: 24px;
-  margin-top: 24px;
-
-  span {
-    text-decoration: line-through;
-  }
+export const RestaurantName = styled.h2`
+  bottom: 32px;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 37.5px;
+  color: ${cores.white_100};
+  position: absolute;
 `

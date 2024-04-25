@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export const cores = {
   orange_100: '#E66767',
   orange_200: '#FFEBD9',
+  orange_300: '#FFF8F2',
   white_100: '#FFFFFF',
 
   branca: '#EEEEEE',
@@ -22,9 +23,8 @@ export const GlobalCss = createGlobalStyle`
   }
 
   body {
-    background-color: ${cores.preta};
-    color: ${cores.branca};
-    padding-top: 40px;
+    background-color: ${cores.orange_300};
+    color: ${cores.orange_100};
   }
 
   .container {

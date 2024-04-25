@@ -1,103 +1,71 @@
-import Banner from '../../components/Banner'
-import ProductsList from '../../components/ProductsList'
-import Game from '../../models/Game'
+import RestaurantsList from '../../components/RestaurantsList'
+import Restaurant from '../../models/Restaurant'
 
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import starWars from '../../assets/images/star_wars.png'
+import hiokiSushi from '../../assets/images/hioki_sushi.png'
+import LaDolceVitaTrattoria from '../../assets/images/LaDolceVitaTrattoria.png'
+import Header from '../../components/Header'
 
-const promocoes: Game[] = [
+const restaurants: Restaurant[] = [
   {
     id: 1,
-    category: 'Ação',
     description:
-      'Residente jogo loko jogo loko jogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo loko',
-    title: 'Residente Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
+      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!',
+    title: 'Hioki Sushi',
+    infos: ['Destaque da semana', 'Japonesa'],
+    image: hiokiSushi,
+    assessment: 4.9
   },
   {
     id: 2,
-    category: 'Ação',
     description:
-      'Residente jogo loko jogo loko jogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo loko',
-    title: 'Residente Evil 4',
-    system: 'PS5',
-    infos: ['5%', 'R$ 290,00'],
-    image: resident
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: LaDolceVitaTrattoria,
+    assessment: 4.6
   },
   {
     id: 3,
-    category: 'Ação',
     description:
-      'Residente jogo loko jogo loko jogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo loko',
-    title: 'Residente Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: LaDolceVitaTrattoria,
+    assessment: 4.6
   },
   {
     id: 4,
-    category: 'Ação',
     description:
-      'Residente jogo loko jogo loko jogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo lokojogo loko jogo loko',
-    title: 'Residente Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
-  }
-]
-
-const emBreve: Game[] = [
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: LaDolceVitaTrattoria,
+    assessment: 4.6
+  },
   {
     id: 5,
-    category: 'RPG',
     description:
-      'diablo muito loko muito loko loko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito loko',
-    title: 'Diablo 4',
-    system: 'Windows',
-    infos: ['17/05'],
-    image: diablo
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: LaDolceVitaTrattoria,
+    assessment: 4.6
   },
   {
     id: 6,
-    category: 'RPG',
     description:
-      'diablo muito loko muito loko loko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito loko',
-    title: 'Star Wars',
-    system: 'Windows',
-    infos: ['17/05'],
-    image: starWars
-  },
-  {
-    id: 7,
-    category: 'RPG',
-    description:
-      'diablo muito loko muito loko loko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito loko',
-    title: 'Zelda 4',
-    system: 'Windows',
-    infos: ['17/05'],
-    image: zelda
-  },
-  {
-    id: 8,
-    category: 'RPG',
-    description:
-      'diablo muito loko muito loko loko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito lokoloko muito loko',
-    title: 'Resident Evil 4',
-    system: 'Nintendo Switch',
-    infos: ['17/05'],
-    image: resident
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
+    title: 'La Dolce Vita Trattoria',
+    infos: ['Italiana'],
+    image: LaDolceVitaTrattoria,
+    assessment: 4.6
   }
 ]
 
 const Home = () => (
   <>
-    <Banner />
-    <ProductsList games={promocoes} title="Promoções" background="gray" />
-    <ProductsList games={emBreve} title="Em breve" background="black" />
+    <Header type="primary" />
+    <RestaurantsList restaurants={restaurants} />
   </>
 )
 

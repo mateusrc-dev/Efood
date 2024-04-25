@@ -1,41 +1,31 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { Props } from '.'
 
-export const HeaderBar = styled.header`
-  background-color: ${cores.cinza};
-  padding: 24px;
-  border-radius: 16px;
-  margin-bottom: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+export const HeaderBar = styled.header<Props>`
+  width: 100%;
+  height: ${(props) => (props.type === 'primary' ? '384px' : '186px')};
+  padding-top: 46px;
 
-  a {
-    color: ${cores.branca};
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  div {
+  .container {
     display: flex;
+    flex-direction: ${(props) => (props.type === 'primary' ? 'column' : 'row')};
     align-items: center;
+    justify-content: ${(props) =>
+      props.type === 'primary' ? 'center' : 'space-between'};
+  }
+
+  p {
+    margin-top: 138.5px;
+    max-width: 539px;
+    font-size: 36px;
+    font-weight: 900;
+    text-align: center;
   }
 `
 
-export const Links = styled.ul`
-  display: flex;
-  margin-left: 40px;
-`
-
-export const LinkItem = styled.li`
-  margin-right: 16px;
-`
-
-export const LinkCart = styled.a`
-  display: flex;
-  align-items: center;
-
-  img {
-    margin-left: 16px;
-  }
+export const TextsContainer = styled.span`
+  line-height: 21.09px;
+  font-size: 18px;
+  font-weight: 900;
+  text-align: center;
 `

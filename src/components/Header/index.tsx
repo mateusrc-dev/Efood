@@ -1,35 +1,39 @@
 import { Link } from 'react-router-dom'
 
-import { HeaderBar, LinkCart, LinkItem, Links } from './styles'
+import { HeaderBar, TextsContainer } from './styles'
 
-import logo from '../../assets/images/logo.svg'
-import carrinho from '../../assets/images/carrinho.svg'
+import logo from '../../assets/images/logo_efood.svg'
+import background from '../../assets/images/fundo_header_efood.png'
 
-const Header = () => (
-  <HeaderBar>
-    <div>
-      <Link to="/">
-        <img src={logo} alt="EPLAY" />
-      </Link>
-      <nav>
-        <Links>
-          <LinkItem>
-            <Link to="/categories">Categorias</Link>
-          </LinkItem>
-          <LinkItem>
-            <a href="#">Novidades</a>
-          </LinkItem>
-          <LinkItem>
-            <a href="#">Promoções</a>
-          </LinkItem>
-        </Links>
-      </nav>
-    </div>
-    <LinkCart href="#">
-      0 - produto(s)
-      <img src={carrinho} alt="Carrinho" />
-    </LinkCart>
-  </HeaderBar>
-)
+export type Props = {
+  type: 'primary' | 'secondary'
+}
+
+const Header = ({ type }: Props) => {
+  if (type === 'primary') {
+    return (
+      <HeaderBar type={type} style={{ backgroundImage: `url(${background})` }}>
+        <div className="container">
+          <Link to="/">
+            <img src={logo} alt="EFOOD" />
+          </Link>
+          <p>Viva experiências gastronômicas no conforto da sua casa</p>
+        </div>
+      </HeaderBar>
+    )
+  } else {
+    return (
+      <HeaderBar type={type} style={{ backgroundImage: `url(${background})` }}>
+        <div className="container">
+          <TextsContainer>Restaurantes</TextsContainer>
+          <Link to="/">
+            <img src={logo} alt="EFOOD" />
+          </Link>
+          <TextsContainer>0 produto(s) no carrinho</TextsContainer>
+        </div>
+      </HeaderBar>
+    )
+  }
+}
 
 export default Header
