@@ -5,6 +5,7 @@ export const cores = {
   orange_200: '#FFEBD9',
   orange_300: '#FFF8F2',
   white_100: '#FFFFFF',
+  black_100: '#4B4B4B',
 
   branca: '#EEEEEE',
   preta: '#111111',

@@ -43,6 +43,21 @@ export const HeaderBar = styled.header<Props>`
       padding-inline: 8px;
       width: 360px;
       box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.13);
+
+      h3 {
+        color: ${cores.orange_200};
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 18.75px;
+        margin-bottom: 16px;
+      }
+      span {
+        color: ${cores.orange_200};
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 24px;
+      }
     }
     .itemsContainer {
       display: flex;
