@@ -6,13 +6,11 @@ type Props = {
   description: string
   image: string
   id: number
+  onClick: (id: number) => void
 }
 
-const Dish = ({ description, image, title, id }: Props) => {
+const Dish = ({ description, image, title, id, onClick }: Props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function handleAddInKart(_id: number) {
-    return null
-  }
 
   return (
     <Card>
@@ -23,7 +21,7 @@ const Dish = ({ description, image, title, id }: Props) => {
         <Button
           style="primary"
           title="Adicionar ao carrinho"
-          onClick={() => handleAddInKart(id)}
+          onClick={() => onClick(id)}
         >
           Adicionar ao carrinho
         </Button>

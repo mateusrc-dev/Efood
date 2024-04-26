@@ -49,12 +49,14 @@ const dishes: Dish[] = [
   }
 ]
 
-const RestaurantDetails = () => (
-  <>
-    <Header type="secondary" />
-    <Banner dishType="Italiana" restaurantName="La Dolce Vita Trattoria" />
-    <DishesList dishes={dishes} />
-  </>
-)
+const RestaurantDetails = () => {
+  return (
+    <>
+      <Header type="secondary" />
+      <Banner dishType="Italiana" restaurantName="La Dolce Vita Trattoria" />
+      <DishesList dishes={dishes} />
+    </>
+  )
+}
 
 export default RestaurantDetails

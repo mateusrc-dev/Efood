@@ -1,9 +1,12 @@
+import React from 'react'
 import { ButtonContainer, ButtonLink } from './styles'
+
+type ClickEvent = React.MouseEvent<HTMLButtonElement>
 
 type Props = {
   style: 'primary' | 'secondary'
   title: string
-  onClick?: () => void
+  onClick?: (e: ClickEvent) => void
   children: string
 }
 
