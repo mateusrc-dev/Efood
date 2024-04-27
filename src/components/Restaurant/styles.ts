@@ -5,6 +5,8 @@ import { TagContainer } from '../Tag/styles'
 export const Card = styled.div`
   position: relative;
   background-color: ${cores.white_100};
+  display: flex;
+  flex-direction: column;
 
   ${TagContainer} {
     margin-right: 8px;
@@ -12,6 +14,8 @@ export const Card = styled.div`
 `
 
 export const Main = styled.main`
+  border: 1px solid ${cores.orange_100};
+  border-top: 0px;
   padding: 8px;
 `
 
