@@ -93,7 +93,7 @@ const DishesList = ({ dishes }: Props) => {
                 <ButtonDish>
                   <Button style="primary" title="Sair" onClick={handleState}>
                     {`Adicionar ao carrinho - R$ ${String(
-                      dishSelected?.preco
+                      Number(dishSelected?.preco).toFixed(2)
                     ).replace('.', ',')}`}
                   </Button>
                 </ButtonDish>
