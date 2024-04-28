@@ -1,15 +1,14 @@
 import { Imagem, RestaurantName, Titulo } from './styles'
 
-import LaDolceVitaTrattoriaBanner from '../../assets/images/LaDolceVitaTrattoriaBanner.png'
-
 type Props = {
   dishType: string
   restaurantName: string
+  restaurantImage: string
 }
 
-const Banner = ({ dishType, restaurantName }: Props) => (
+const Banner = ({ dishType, restaurantName, restaurantImage }: Props) => (
   <Imagem>
-    <img src={LaDolceVitaTrattoriaBanner} alt={restaurantName} />
+    <img src={restaurantImage} alt={restaurantName} />
     <div className="container">
       <Titulo>{dishType}</Titulo>
       <RestaurantName>{restaurantName}</RestaurantName>

@@ -1,60 +1,34 @@
-import pizzaMarguerita from '../../assets/images/PizzaMarguerita.png'
 import Header from '../../components/Header'
 import Banner from '../../components/Banner'
-import Dish from '../../models/Dish'
 import DishesList from '../../components/DishsList'
-
-const dishes: Dish[] = [
-  {
-    id: 1,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  },
-  {
-    id: 2,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  },
-  {
-    id: 3,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  },
-  {
-    id: 4,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  },
-  {
-    id: 5,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  },
-  {
-    id: 6,
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    title: 'Pizza Marguerita',
-    image: pizzaMarguerita
-  }
-]
+import { useParams } from 'react-router-dom'
+import { Restaurant } from '../Home'
+import { useEffect, useState } from 'react'
 
 const RestaurantDetails = () => {
+  const { id } = useParams()
+
+  const [restaurant, setRestaurant] = useState<Restaurant>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((res) => res.json())
+      .then((res) => setRestaurant(res))
+  }, [id])
+
+  if (!restaurant) {
+    return <>Carregando...</>
+  }
+
   return (
     <>
       <Header type="secondary" />
-      <Banner dishType="Italiana" restaurantName="La Dolce Vita Trattoria" />
-      <DishesList dishes={dishes} />
+      <Banner
+        dishType={restaurant.tipo}
+        restaurantName={restaurant.titulo}
+        restaurantImage={restaurant.capa}
+      />
+      <DishesList dishes={restaurant.cardapio} />
     </>
   )
 }

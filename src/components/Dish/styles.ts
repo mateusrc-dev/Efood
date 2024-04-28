@@ -8,6 +8,12 @@ export const Card = styled.div`
 
 export const Main = styled.main`
   padding: 8px;
+
+  > img {
+    width: 304px;
+    height: 167px;
+    object-fit: cover;
+  }
 `
 
 export const Titulo = styled.h3`

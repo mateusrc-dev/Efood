@@ -25,8 +25,9 @@ export const HeaderBar = styled.header<Props>`
 
   .modal {
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 1;
+    top: 0;
     left: 0;
     min-height: 100vh;
     background: rgba(0, 0, 0, 0.4);

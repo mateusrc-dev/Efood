@@ -46,7 +46,7 @@ const Restaurant = ({
         <TitleAndAssessment>
           <Titulo>{title}</Titulo>
           <AssessmentContainer>
-            <span>{assessment}</span>
+            <span>{String(assessment).replace('.', ',')}</span>
             <img src={star} alt="Estrela" />
           </AssessmentContainer>
         </TitleAndAssessment>

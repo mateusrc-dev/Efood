@@ -8,6 +8,12 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
 
+  > img {
+    max-width: 472px;
+    height: 217px;
+    object-fit: cover;
+  }
+
   ${TagContainer} {
     margin-right: 8px;
   }
@@ -17,6 +23,8 @@ export const Main = styled.main`
   border: 1px solid ${cores.orange_100};
   border-top: 0px;
   padding: 8px;
+  max-height: 100%;
+  max-height: 181px;
 `
 
 export const Titulo = styled.h3`

@@ -10,7 +10,7 @@ export const Imagem = styled.div`
     height: 280px;
     background-repeat: no-repeat;
     filter: brightness(0.6);
-    background-size: cover;
+    object-fit: cover;
   }
 `
 

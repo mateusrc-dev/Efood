@@ -9,8 +9,9 @@ export const Container = styled.section`
   .modal {
     width: 100%;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     z-index: 1;
+    top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
@@ -64,7 +65,7 @@ export const ColumnContainer = styled.div`
 export const ModalImage = styled.img`
   width: 280px;
   height: 280px;
-  background-size: cover;
+  object-fit: cover;
 `
 
 export const ButtonDish = styled.div`

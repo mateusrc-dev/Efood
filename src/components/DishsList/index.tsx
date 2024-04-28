@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-import DishModel from '../../models/Dish'
+import { useState } from 'react'
 import Dish from '../Dish'
 import {
   ButtonDish,
@@ -12,18 +11,18 @@ import {
 } from './styles'
 import Button from '../Button'
 
-import dish from '../../assets/images/PizzaMargueritaModal.png'
 import close from '../../assets/images/close.svg'
+import { Cardapio } from '../../pages/Home'
 
 type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
 export type Props = {
-  dishes: DishModel[]
+  dishes: Cardapio[]
 }
 
 const DishesList = ({ dishes }: Props) => {
   const [state, setState] = useState(false)
-  const [topPosition, setTopPosition] = useState(0)
+  const [dishSelected, setDishSelected] = useState<Cardapio>()
 
   function handleState() {
     if (state === false) {
@@ -43,24 +42,24 @@ const DishesList = ({ dishes }: Props) => {
     }
   }
 
-  function handleAddInKart(id: number) {
+  function handleAddInKart(dish: Cardapio) {
+    setDishSelected({
+      descricao: dish.descricao,
+      foto: dish.foto,
+      id: dish.id,
+      nome: dish.nome,
+      porcao: dish.porcao,
+      preco: dish.preco
+    })
     handleState()
-    console.log(id)
   }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      console.log(scrollPosition)
-
-      setTopPosition(scrollPosition)
+  const getDescricao = (descricao: string) => {
+    if (descricao.length > 132) {
+      return descricao.slice(0, 129) + '...'
     }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [state])
+    return descricao
+  }
 
   return (
     <Container>
@@ -75,7 +74,6 @@ const DishesList = ({ dishes }: Props) => {
         id="modal"
         className={state ? 'modal' : 'none'}
         onClick={(e: ClickEventDiv) => handleOutsideClick(e)}
-        style={{ top: `${topPosition}px` }}
       >
         {state && (
           <div className="container">
@@ -83,27 +81,20 @@ const DishesList = ({ dishes }: Props) => {
               <CloseContainer onClick={handleState}>
                 <img src={close} alt="fechar" />
               </CloseContainer>
-              <ModalImage src={dish} />
+              <ModalImage src={dishSelected?.foto} />
               <ColumnContainer>
-                <h2>Pizza Marguerita</h2>
+                <h2>{dishSelected?.nome}</h2>
                 <p>
-                  A pizza Margherita é uma pizza clássica da culinária italiana,
-                  reconhecida por sua simplicidade e sabor inigualável. Ela é
-                  feita com uma base de massa fina e crocante, coberta com molho
-                  de tomate fresco, queijo mussarela de alta qualidade,
-                  manjericão fresco e azeite de oliva extra-virgem. A combinação
-                  de sabores é perfeita, com o molho de tomate suculento e
-                  ligeiramente ácido, o queijo derretido e cremoso e as folhas
-                  de manjericão frescas, que adicionam um toque de sabor
-                  herbáceo. É uma pizza simples, mas deliciosa, que agrada a
-                  todos os paladares e é uma ótima opção para qualquer ocasião.
+                  {dishSelected?.descricao}
                   <br />
                   <br />
-                  Serve: de 2 a 3 pessoas
+                  Serve: de {dishSelected?.porcao}
                 </p>
                 <ButtonDish>
                   <Button style="primary" title="Sair" onClick={handleState}>
-                    Adicionar ao carrinho - R$ 60,90
+                    {`Adicionar ao carrinho - R$ ${String(
+                      dishSelected?.preco
+                    ).replace('.', ',')}`}
                   </Button>
                 </ButtonDish>
               </ColumnContainer>
@@ -116,11 +107,11 @@ const DishesList = ({ dishes }: Props) => {
           {dishes.map((dish) => (
             <Dish
               key={dish.id}
-              description={dish.description}
-              image={dish.image}
-              title={dish.title}
+              description={getDescricao(dish.descricao)}
+              image={dish.foto}
+              title={dish.nome}
               id={dish.id}
-              onClick={handleAddInKart}
+              onClick={() => handleAddInKart(dish)}
             />
           ))}
         </List>

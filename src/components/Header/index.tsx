@@ -6,7 +6,7 @@ import logo from '../../assets/images/logo_efood.svg'
 import pizza from '../../assets/images/PizzaMargueritaModal2.png'
 import lixo from '../../assets/images/lixeira-de-reciclagem.svg'
 import background from '../../assets/images/fundo_header_efood.png'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '../Button'
 import Input from '../Input'
 
@@ -17,7 +17,6 @@ export type Props = {
 const Header = ({ type }: Props) => {
   const [state, setState] = useState(false)
   const [purchasePhase, setPurchasePhase] = useState(0)
-  const [topPosition, setTopPosition] = useState(0)
 
   type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
@@ -44,20 +43,6 @@ const Header = ({ type }: Props) => {
     }
   }
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      console.log(scrollPosition)
-
-      setTopPosition(scrollPosition)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [state])
-
   if (type === 'primary') {
     return (
       <HeaderBar type={type} style={{ backgroundImage: `url(${background})` }}>
@@ -76,7 +61,6 @@ const Header = ({ type }: Props) => {
           id="modal"
           className={state ? 'modal' : 'none'}
           onClick={handleOutsideClick}
-          style={{ top: `${topPosition}px` }}
         >
           {purchasePhase === 0 && (
             <div className="modalContent">
