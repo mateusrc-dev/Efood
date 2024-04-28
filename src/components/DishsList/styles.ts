@@ -38,7 +38,7 @@ export const ModalComponent = styled.div`
   background-color: ${cores.orange_100};
   padding: 32px;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 24px;
 `
 
