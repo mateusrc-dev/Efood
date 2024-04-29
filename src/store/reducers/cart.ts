@@ -3,10 +3,12 @@ import { Cardapio } from '../../pages/Home'
 
 type CartState = {
   items: Cardapio[]
+  isOpen: boolean
 }
 
 const initialState: CartState = {
-  items: []
+  items: [],
+  isOpen: false
 }
 
 const cartSlice = createSlice({
@@ -19,14 +21,20 @@ const cartSlice = createSlice({
       if (!game) {
         state.items.push(action.payload)
       } else {
-        alert('O jogo já está no carrinho!')
+        alert('O prato já está no carrinho!')
       }
     },
     remove: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter((item) => item.id !== action.payload)
+    },
+    open: (state) => {
+      state.isOpen = true
+    },
+    close: (state) => {
+      state.isOpen = false
     }
   }
 })
 
-export const { add, remove } = cartSlice.actions
+export const { add, remove, close, open } = cartSlice.actions
 export default cartSlice.reducer

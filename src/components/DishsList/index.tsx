@@ -14,7 +14,7 @@ import Button from '../Button'
 import close from '../../assets/images/close.svg'
 import { Cardapio } from '../../pages/Home'
 import { useDispatch } from 'react-redux'
-import { add } from '../../store/reducers/cart'
+import { add, open } from '../../store/reducers/cart'
 
 type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
@@ -61,9 +61,7 @@ const DishesList = ({ dishes }: Props) => {
   const addDishInCart = () => {
     if (dishSelected) {
       dispatch(add(dishSelected))
-
-      alert('Item adicionado com sucesso!')
-
+      dispatch(open())
       handleState()
     }
   }

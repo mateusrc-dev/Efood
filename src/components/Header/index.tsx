@@ -10,17 +10,16 @@ import Button from '../Button'
 import Input from '../Input'
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
-import { remove } from '../../store/reducers/cart'
+import { remove, open, close } from '../../store/reducers/cart'
 
 export type Props = {
   type: 'primary' | 'secondary'
 }
 
 const Header = ({ type }: Props) => {
-  const [state, setState] = useState(false)
   const [purchasePhase, setPurchasePhase] = useState(0)
 
-  const { items } = useSelector((state: RootReducer) => state.cart)
+  const { items, isOpen } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
 
   type ClickEventDiv = React.MouseEvent<HTMLDivElement>
@@ -31,19 +30,19 @@ const Header = ({ type }: Props) => {
   }
 
   function handleState() {
-    if (state === false) {
-      setState(true)
+    if (isOpen === false) {
+      dispatch(open())
     } else {
-      setState(false)
+      dispatch(close())
     }
   }
 
   const handleOutsideClick = (e: ClickEventDiv) => {
     if (e.target instanceof HTMLElement && e.target.id === 'modal') {
-      if (state === false) {
-        setState(true)
+      if (isOpen === false) {
+        dispatch(open())
       } else {
-        setState(false)
+        dispatch(close())
       }
     }
   }
@@ -78,7 +77,7 @@ const Header = ({ type }: Props) => {
       <HeaderBar type={type} style={{ backgroundImage: `url(${background})` }}>
         <div
           id="modal"
-          className={state ? 'modal' : 'none'}
+          className={isOpen ? 'modal' : 'none'}
           onClick={handleOutsideClick}
         >
           {purchasePhase === 0 && (
