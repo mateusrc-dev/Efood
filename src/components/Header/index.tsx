@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom'
 import { HeaderBar, KartContainer, TextsContainer } from './styles'
 
 import logo from '../../assets/images/logo_efood.svg'
-import pizza from '../../assets/images/PizzaMargueritaModal2.png'
 import lixo from '../../assets/images/lixeira-de-reciclagem.svg'
 import background from '../../assets/images/fundo_header_efood.png'
 import { useState } from 'react'
 import Button from '../Button'
 import Input from '../Input'
+import { RootReducer } from '../../store'
+import { useDispatch, useSelector } from 'react-redux'
+import { remove } from '../../store/reducers/cart'
 
 export type Props = {
   type: 'primary' | 'secondary'
@@ -17,6 +19,9 @@ export type Props = {
 const Header = ({ type }: Props) => {
   const [state, setState] = useState(false)
   const [purchasePhase, setPurchasePhase] = useState(0)
+
+  const { items } = useSelector((state: RootReducer) => state.cart)
+  const dispatch = useDispatch()
 
   type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
@@ -43,6 +48,20 @@ const Header = ({ type }: Props) => {
     }
   }
 
+  const removeDishOfCart = (id: number) => {
+    dispatch(remove(id))
+  }
+
+  const getTotalPrice = () => {
+    return items.reduce((acumulador, valorAtual) => {
+      if (valorAtual.preco) {
+        return (acumulador += valorAtual.preco)
+      } else {
+        return (acumulador += 0)
+      }
+    }, 0)
+  }
+
   if (type === 'primary') {
     return (
       <HeaderBar type={type} style={{ backgroundImage: `url(${background})` }}>
@@ -65,40 +84,26 @@ const Header = ({ type }: Props) => {
           {purchasePhase === 0 && (
             <div className="modalContent">
               <div className="itemsContainer">
-                <div className="modalItem">
-                  <img src={pizza} alt="Pizza" />
-                  <div className="modalItemText">
-                    <h3>Pizza Marguerita</h3>
-                    <span>R$ 60,90</span>
+                {items.map((item) => (
+                  <div className="modalItem" key={item.id}>
+                    <img src={item.foto} alt={item.nome} />
+                    <div className="modalItemText">
+                      <h3>{item.nome}</h3>
+                      <span>{`R$ ${String(
+                        Number(item?.preco).toFixed(2)
+                      ).replace('.', ',')}`}</span>
+                    </div>
+                    <button onClick={() => removeDishOfCart(item.id)}>
+                      <img src={lixo} alt="Lixo" />
+                    </button>
                   </div>
-                  <button>
-                    <img src={lixo} alt="Lixo" />
-                  </button>
-                </div>
-                <div className="modalItem">
-                  <img src={pizza} alt="Pizza" />
-                  <div className="modalItemText">
-                    <h3>Pizza Marguerita</h3>
-                    <span>R$ 60,90</span>
-                  </div>
-                  <button>
-                    <img src={lixo} alt="Lixo" />
-                  </button>
-                </div>
-                <div className="modalItem">
-                  <img src={pizza} alt="Pizza" />
-                  <div className="modalItemText">
-                    <h3>Pizza Marguerita</h3>
-                    <span>R$ 60,90</span>
-                  </div>
-                  <button>
-                    <img src={lixo} alt="Lixo" />
-                  </button>
-                </div>
+                ))}
               </div>
               <div className="valorTotal">
                 <h4>Valor total</h4>
-                <h4>R$ 182,70</h4>
+                <h4>
+                  R$ {String(getTotalPrice().toFixed(2)).replace('.', ',')}
+                </h4>
               </div>
               <Button
                 style="primary"
@@ -234,7 +239,7 @@ const Header = ({ type }: Props) => {
             <img src={logo} alt="EFOOD" />
           </Link>
           <KartContainer onClick={handleState}>
-            0 produto(s) no carrinho
+            {items.length} produto(s) no carrinho
           </KartContainer>
         </div>
       </HeaderBar>

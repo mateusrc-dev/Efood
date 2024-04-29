@@ -13,6 +13,8 @@ import Button from '../Button'
 
 import close from '../../assets/images/close.svg'
 import { Cardapio } from '../../pages/Home'
+import { useDispatch } from 'react-redux'
+import { add } from '../../store/reducers/cart'
 
 type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
@@ -23,6 +25,8 @@ export type Props = {
 const DishesList = ({ dishes }: Props) => {
   const [state, setState] = useState(false)
   const [dishSelected, setDishSelected] = useState<Cardapio>()
+
+  const dispatch = useDispatch()
 
   function handleState() {
     if (state === false) {
@@ -52,6 +56,16 @@ const DishesList = ({ dishes }: Props) => {
       preco: dish.preco
     })
     handleState()
+  }
+
+  const addDishInCart = () => {
+    if (dishSelected) {
+      dispatch(add(dishSelected))
+
+      alert('Item adicionado com sucesso!')
+
+      handleState()
+    }
   }
 
   const getDescricao = (descricao: string) => {
@@ -91,7 +105,7 @@ const DishesList = ({ dishes }: Props) => {
                   Serve: de {dishSelected?.porcao}
                 </p>
                 <ButtonDish>
-                  <Button style="primary" title="Sair" onClick={handleState}>
+                  <Button style="primary" title="Sair" onClick={addDishInCart}>
                     {`Adicionar ao carrinho - R$ ${String(
                       Number(dishSelected?.preco).toFixed(2)
                     ).replace('.', ',')}`}
