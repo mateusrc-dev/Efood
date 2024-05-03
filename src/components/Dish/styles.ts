@@ -4,13 +4,10 @@ import { cores } from '../../styles'
 export const Card = styled.div`
   background-color: ${cores.orange_100};
   color: ${cores.orange_200};
-`
-
-export const Main = styled.main`
   padding: 8px;
 
-  > img {
-    width: 304px;
+  img {
+    width: 100%;
     height: 167px;
     object-fit: cover;
   }

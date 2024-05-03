@@ -1,9 +1,9 @@
 import { Imagem, RestaurantName, Titulo } from './styles'
 
 type Props = {
-  dishType: string
-  restaurantName: string
-  restaurantImage: string
+  dishType?: string
+  restaurantName?: string
+  restaurantImage?: string
 }
 
 const Banner = ({ dishType, restaurantName, restaurantImage }: Props) => (

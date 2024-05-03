@@ -2,6 +2,8 @@ import RestaurantsList from '../../components/RestaurantsList'
 
 import Header from '../../components/Header'
 import { useGetRestaurantsQuery } from '../../services/api'
+import Loader from '../../components/Loader'
+import Footer from '../../components/Footer'
 // import Restaurant from '../../models/Restaurant'
 
 export type Restaurant = {
@@ -32,16 +34,15 @@ export type Cardapio = {
 }
 
 const Home = () => {
-  const { data: restaurants } = useGetRestaurantsQuery()
+  const { data: restaurants, isLoading } = useGetRestaurantsQuery()
 
-  if (!restaurants) {
-    return <>Carregando...</>
-  }
-
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       <Header type="primary" />
-      <RestaurantsList restaurants={restaurants} />
+      <RestaurantsList isLoading={isLoading} restaurants={restaurants} />
+      <Footer />
     </>
   )
 }

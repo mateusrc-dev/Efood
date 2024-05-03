@@ -19,7 +19,7 @@ import { add, open } from '../../store/reducers/cart'
 type ClickEventDiv = React.MouseEvent<HTMLDivElement>
 
 export type Props = {
-  dishes: Cardapio[]
+  dishes?: Cardapio[]
 }
 
 const DishesList = ({ dishes }: Props) => {
@@ -67,8 +67,8 @@ const DishesList = ({ dishes }: Props) => {
   }
 
   const getDescricao = (descricao: string) => {
-    if (descricao.length > 132) {
-      return descricao.slice(0, 129) + '...'
+    if (descricao.length > 145) {
+      return descricao.slice(0, 145) + '...'
     }
     return descricao
   }
@@ -116,7 +116,7 @@ const DishesList = ({ dishes }: Props) => {
       </div>
       <div className="container">
         <List>
-          {dishes.map((dish) => (
+          {dishes?.map((dish) => (
             <Dish
               key={dish.id}
               description={getDescricao(dish.descricao)}

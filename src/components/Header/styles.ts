@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Props } from '.'
 import { cores } from '../../styles'
+import { ButtonContainer } from '../Button/styles'
 
 export const HeaderBar = styled.header<Props>`
   width: 100%;
@@ -34,6 +35,7 @@ export const HeaderBar = styled.header<Props>`
     display: flex;
     align-items: center;
     justify-content: center;
+
     .modalContent {
       display: flex;
       flex-direction: column;
@@ -44,6 +46,48 @@ export const HeaderBar = styled.header<Props>`
       padding-inline: 8px;
       width: 360px;
       box-shadow: -5px 0px 6px 0px rgba(0, 0, 0, 0.13);
+
+      label {
+        color: ${cores.orange_200};
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 16.41px;
+        text-align: start;
+        margin-bottom: 8px;
+      }
+
+      input {
+        background-color: ${cores.orange_200};
+        color: ${cores.black_100};
+        width: 100%;
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 8px;
+        line-height: 16.41px;
+        margin-bottom: 8px;
+
+        &.is-invalid {
+          border: 2px solid rgb(1000, 0, 1000);
+        }
+
+        &:hover {
+          filter: brightness(0.8);
+        }
+      }
+
+      ${ButtonContainer} {
+        margin-top: 24px;
+      }
+
+      .empty-car {
+        color: ${cores.branca};
+        font-size: 16px;
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        font-style: italic;
+      }
 
       h3 {
         color: ${cores.orange_200};

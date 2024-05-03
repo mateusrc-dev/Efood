@@ -14,6 +14,7 @@ export const LabelContainer = styled.label`
   font-weight: 700;
   line-height: 16.41px;
   text-align: start;
+  margin-bottom: 8px;
 `
 
 export const InputContainer = styled.input`
@@ -26,6 +27,10 @@ export const InputContainer = styled.input`
   padding: 8px;
   line-height: 16.41px;
   margin-bottom: 8px;
+
+  &.is-invalid {
+    border: 2px solid rgb(1000, 0, 1000);
+  }
 
   &:hover {
     filter: brightness(0.8);

@@ -4,7 +4,8 @@ import Restaurant from '../Restaurant'
 import { Container, List } from './styles'
 
 export type Props = {
-  restaurants: RestaurantType[]
+  restaurants?: RestaurantType[]
+  isLoading: boolean
 }
 
 const RestaurantsList = ({ restaurants }: Props) => {
@@ -33,7 +34,7 @@ const RestaurantsList = ({ restaurants }: Props) => {
     <Container>
       <div className="container">
         <List>
-          {restaurants.map((restaurant) => (
+          {restaurants?.map((restaurant) => (
             <Restaurant
               key={restaurant.id}
               description={getDescricao(restaurant.descricao)}

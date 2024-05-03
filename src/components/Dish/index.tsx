@@ -1,5 +1,5 @@
 import Button from '../Button'
-import { Card, Descricao, Main, Titulo } from './styles'
+import { Card, Descricao, Titulo } from './styles'
 
 type Props = {
   title: string
@@ -14,18 +14,16 @@ const Dish = ({ description, image, title, id, onClick }: Props) => {
 
   return (
     <Card>
-      <Main>
-        <img src={image} alt={title} />
-        <Titulo>{title}</Titulo>
-        <Descricao>{description}</Descricao>
-        <Button
-          style="primary"
-          title="Adicionar ao carrinho"
-          onClick={() => onClick(id)}
-        >
-          Adicionar ao carrinho
-        </Button>
-      </Main>
+      <img src={image} alt={title} />
+      <Titulo>{title}</Titulo>
+      <Descricao>{description}</Descricao>
+      <Button
+        style="primary"
+        title="Adicionar ao carrinho"
+        onClick={() => onClick(id)}
+      >
+        Adicionar ao carrinho
+      </Button>
     </Card>
   )
 }

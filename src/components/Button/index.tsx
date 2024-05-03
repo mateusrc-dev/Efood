@@ -8,12 +8,19 @@ type Props = {
   title: string
   onClick?: (e: ClickEvent) => void
   children: string
+  type?: 'button' | 'submit'
 }
 
-const Button = ({ style, children, title, onClick }: Props) => {
+const Button = ({
+  style,
+  children,
+  title,
+  onClick,
+  type = 'button'
+}: Props) => {
   if (style === 'primary') {
     return (
-      <ButtonContainer title={title} onClick={onClick}>
+      <ButtonContainer type={type} title={title} onClick={onClick}>
         {children}
       </ButtonContainer>
     )
