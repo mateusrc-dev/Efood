@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { Props } from '.'
 import { cores } from '../../styles'
-import { ButtonContainer } from '../Button/styles'
 
 export const HeaderBar = styled.header<Props>`
   width: 100%;
@@ -74,10 +73,6 @@ export const HeaderBar = styled.header<Props>`
         &:hover {
           filter: brightness(0.8);
         }
-      }
-
-      ${ButtonContainer} {
-        margin-top: 24px;
       }
 
       .empty-car {

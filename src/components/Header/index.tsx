@@ -249,17 +249,23 @@ const Header = ({ type }: Props) => {
                       className={getInvalidField('address') ? 'is-invalid' : ''}
                     />
                   </div>
-
-                  <label>Cidade</label>
-                  <input
-                    id="city"
-                    name="city"
-                    onChange={form.handleChange}
-                    onBlur={form.handleBlur}
-                    type="text"
-                    value={form.values.city}
-                    className={getInvalidField('city') ? 'is-invalid' : ''}
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
+                    <label>Cidade</label>
+                    <input
+                      id="city"
+                      name="city"
+                      onChange={form.handleChange}
+                      onBlur={form.handleBlur}
+                      type="text"
+                      value={form.values.city}
+                      className={getInvalidField('city') ? 'is-invalid' : ''}
+                    />
+                  </div>
                   <div
                     style={{
                       display: 'flex',
@@ -305,18 +311,25 @@ const Header = ({ type }: Props) => {
                       />
                     </div>
                   </div>
-                  <label>Complemento (opcional)</label>
-                  <input
-                    id="complement"
-                    name="complement"
-                    onChange={form.handleChange}
-                    onBlur={form.handleBlur}
-                    type="text"
-                    value={form.values.complement}
-                    className={
-                      getInvalidField('complement') ? 'is-invalid' : ''
-                    }
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
+                    <label>Complemento (opcional)</label>
+                    <input
+                      id="complement"
+                      name="complement"
+                      onChange={form.handleChange}
+                      onBlur={form.handleBlur}
+                      type="text"
+                      value={form.values.complement}
+                      className={
+                        getInvalidField('complement') ? 'is-invalid' : ''
+                      }
+                    />
+                  </div>
                   <div
                     style={{
                       display: 'flex',
@@ -347,16 +360,25 @@ const Header = ({ type }: Props) => {
               {purchasePhase === 2 && (
                 <div>
                   <h3>Pagamento - Valor a pagar R$ 190,90</h3>
-                  <label>Nome no cartão</label>
-                  <input
-                    id="nameCard"
-                    name="nameCard"
-                    onChange={form.handleChange}
-                    onBlur={form.handleBlur}
-                    type="text"
-                    value={form.values.nameCard}
-                    className={getInvalidField('nameCard') ? 'is-invalid' : ''}
-                  />
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                  >
+                    <label>Nome no cartão</label>
+                    <input
+                      id="nameCard"
+                      name="nameCard"
+                      onChange={form.handleChange}
+                      onBlur={form.handleBlur}
+                      type="text"
+                      value={form.values.nameCard}
+                      className={
+                        getInvalidField('nameCard') ? 'is-invalid' : ''
+                      }
+                    />
+                  </div>
                   <div
                     style={{
                       display: 'flex',
@@ -456,8 +478,8 @@ const Header = ({ type }: Props) => {
                     style={{
                       display: 'flex',
                       flexDirection: 'column',
-                      gap: '8px',
-                      marginTop: '24px'
+                      marginTop: '16px',
+                      gap: '8px'
                     }}
                   >
                     <Button
@@ -483,9 +505,9 @@ const Header = ({ type }: Props) => {
             </form>
 
             {purchasePhase === 3 && data ? (
-              <div>
+              <div className="modalItemText">
                 <h3>{`Pedido realizado - ${data.orderId}`}</h3>
-                <span>
+                <span style={{ display: 'flex', marginBottom: '24px' }}>
                   Estamos felizes em informar que seu pedido já está em processo
                   de preparação e, em breve, será entregue no endereço
                   fornecido.
